@@ -1,3 +1,2 @@
 # react-for-beginners
-gd
-하이
+리액트 강의용 DAY 0
