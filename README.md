@@ -1,6 +1,7 @@
 # react-for-beginners
-✅ 클릭을 카운팅해주는 JS 앱 만들기
+#2.1 :: Before React
 
+✅ 클릭을 카운팅해주는 JS 앱 만들기
 
 ﻿- 자바스크립트로 만들어 보기﻿
 <!DOCTYPE html>
