@@ -5,14 +5,37 @@
 </body>
 <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-<script>
-    const root = document.getElementById('root');
-    const h3 = React.createElement('h3',null, "Hello I'm a span");
-    const btn = React.createElement('button', {
-        onClick: () => console.log("I'm clicked")
-    }, 'Click me');
-    const container = React.createElement('div', null, [h3, btn])
+<!-- Babel -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    ReactDOM.render(container, root)
+<script type="text/babel">
+    const root = document.getElementById('root');
+
+    //이게 바로 JSX
+    const Title = () => ( <h3 id="title" 
+    //JSX형태로 렌더링 하기 위해 함수로 바꿔줌
+    onMouseEnter={() => console.log("mouse enter")}>Hello I'm a title</h3>
+    );
+
+    //이거 이제 안씀
+    // const h3 = React.createElement('h3',null, "Hello I'm a span");
+
+    //이게 바로 JSX
+    const Button = () => ( <button style={{
+        //JSX형태로 렌더링 하기 위해 화살표 함수로 바꿔줌
+        backgroundColor: "tomato",
+    }} 
+    onClick ={ () => console.log("I'm clicked")}>
+    Click me
+    </button>
+    );
+
+    const Container = () => ( <div>
+            <Title />
+            <Button />
+        </div>
+    )
+
+    ReactDOM.render(<Container />, root)
 </script>
 </html>
