@@ -10,33 +10,23 @@
 
 <script type="text/babel">
     const root = document.getElementById('root');
+    let counter = 0;
+    function countUp() {
+        counter = counter + 1; 
+        render();
+    }
 
-    //이게 바로 JSX
-    const Title = () => ( <h3 id="title" 
-    //JSX형태로 렌더링 하기 위해 함수로 바꿔줌
-    onMouseEnter={() => console.log("mouse enter")}>Hello I'm a title</h3>
-    );
-
-    //이거 이제 안씀
-    // const h3 = React.createElement('h3',null, "Hello I'm a span");
-
-    //이게 바로 JSX
-    const Button = () => ( <button style={{
-        //JSX형태로 렌더링 하기 위해 화살표 함수로 바꿔줌
-        backgroundColor: "tomato",
-    }} 
-    onClick ={ () => console.log("I'm clicked")}>
-    Click me
-    </button>
-    );
+    function render() {
+        //여기서 한번 렌더링을 한번 더 해줘야 UI가 업데이트 되는 것.
+        ReactDOM.render(<Container />, root);
+    }
 
     const Container = () => ( <div>
-            <Title />
-            <Button />
+           <h3 id="title">Total clicks: {counter}</h3>
+            <button onClick={countUp}>Click me</button>
         </div>
     )
-    //
-    ReactDOM.render(<Container />, root)
-    //test
+
+    ReactDOM.render(<Container />, root);
 </script>
 </html>

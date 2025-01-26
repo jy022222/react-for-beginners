@@ -30,7 +30,7 @@ addEventLister를 반복하는 것 대신에 프로퍼티에서 이벤트를 바
 3. React JS는 스마트하기 때문에 event listener로 등록해준 것을 알고 자동으로 이벤트를 업데이트 해준다.
 
 
-#2.5 ~ #2.6 JSX
+#2.5 ~ #2.6 :: JSX
 1. JSX로 엘리먼트를 더 편리하게 생성하기 위해 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 요 바벨 코드를 임포트 해주었다.
 
 2. const Title = ( <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>Hello I'm a title</h3>
@@ -41,3 +41,29 @@ addEventLister를 반복하는 것 대신에 프로퍼티에서 이벤트를 바
 4. <Title /> 이런식으로 맨앞글자는 무조건 대문자로, 해당 형태로 표기해주면 완성 ~ 🐰
 
 왜 잔디 제대로 안심어짐? ㅠㅠ
+
+
+#3.0 :: State
+JSX로 엘리먼트를 생성하는 쉽고 편한 방법으로 코딩을 해주었다!
+const root = document.getElementById('root');
+    let counter = 0;
+    function countUp() {
+        counter = counter + 1; 
+        render();
+    }
+
+    function render() {
+        //여기서 한번 렌더링을 한번 더 해줘야 UI가 업데이트 되는 것.
+        ReactDOM.render(<Container />, root);
+    }
+
+    const Container = () => ( <div>
+           <h3 id="title">Total clicks: {counter}</h3>
+            <button onClick={countUp}>Click me</button>
+        </div>
+    )
+
+ReactDOM.render(<Container />, root);
+
+하지만 이 방법은 계속해서 render 함수를 호출하여 렌더링하고 있기 때문에
+좋은 방법은 아님! 그렇다면 베스트 방법은?? >> 다음 시간ㅇㅔ ..
