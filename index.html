@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <body>
     <div id="root"></div>
 </body>
@@ -10,23 +11,23 @@
 
 <script type="text/babel">
     const root = document.getElementById('root');
-    let counter = 0;
-    function countUp() {
-        counter = counter + 1; 
-        render();
+
+    function App (){
+        const [counter, setCounter] = React.useState(0);
+        const onClick = () => {
+            setCounter(counter + 1);
+            //setCounter 함수는 ()안에 값을 받아서 그 값으로 업데이트하고, 리렌더링을 일으킴
+        }
+
+        return (
+            <div>
+                <h3 id="title">Total clicks: {counter}</h3>
+                <button onClick={onClick}>Click me</button>
+            </div>
+        )
     }
-
-    function render() {
-        //여기서 한번 렌더링을 한번 더 해줘야 UI가 업데이트 되는 것.
-        ReactDOM.render(<Container />, root);
-    }
-
-    const Container = () => ( <div>
-           <h3 id="title">Total clicks: {counter}</h3>
-            <button onClick={countUp}>Click me</button>
-        </div>
-    )
-
-    ReactDOM.render(<Container />, root);
+    
+    ReactDOM.render(<App />, root);
 </script>
+
 </html>

@@ -66,4 +66,25 @@ const root = document.getElementById('root');
 ReactDOM.render(<Container />, root);
 
 하지만 이 방법은 계속해서 render 함수를 호출하여 렌더링하고 있기 때문에
-좋은 방법은 아님! 그렇다면 베스트 방법은?? >> 다음 시간ㅇㅔ ..
+좋은 방법은 아님! 그렇다면 베스트 방법은?? >> 다음 시간ㅇㅔ .. 
+
+#3.1 ~ #3.3 :: useState
+useState를 이용하면 render 함수를 호출하지 않고도 간단하고 똑똑하게 데이터를 업데이트 할 수 있 따!
+
+const [counter, setCounter] = React.useState(0);
+const onClick = () => {
+    setCounter(counter + 1);
+    //setCounter 함수는 ()안에 값을 받아서 그 값으로 업데이트하고, 리렌더링을 일으킴
+}
+
+return (
+    <div>
+        <h3 id="title">Total clicks: {counter}</h3>
+        <button onClick={onClick}>Click me</button>
+    </div>
+)
+
+이렇게 setCounter 안에 counter라는 데이터를 +1 해주는 이벤트를 넣으면
+state가 변경되며 컴포넌트가 재생성 (리렌더링) 된다.
+이때, DOM 모두가 바뀌는 게 아니라 우리가 바꾸고 있는 부분, 즉 여기선 {counter} << 이 부분만 변경되는
+아주 스마트한 일이 일어나고잇는 거시다.
