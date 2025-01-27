@@ -43,7 +43,7 @@ addEventLister를 반복하는 것 대신에 프로퍼티에서 이벤트를 바
 왜 잔디 제대로 안심어짐? ㅠㅠ
 
 
-#3.0 :: State
+#3.0 :: State <br>
 JSX로 엘리먼트를 생성하는 쉽고 편한 방법으로 코딩을 해주었다!
 const root = document.getElementById('root');
     let counter = 0;
@@ -68,7 +68,7 @@ ReactDOM.render(<Container />, root);
 하지만 이 방법은 계속해서 render 함수를 호출하여 렌더링하고 있기 때문에
 좋은 방법은 아님! 그렇다면 베스트 방법은?? >> 다음 시간ㅇㅔ .. 
 
-#3.1 ~ #3.3 :: useState
+#3.1 ~ #3.3 :: useState <br>
 useState를 이용하면 render 함수를 호출하지 않고도 간단하고 똑똑하게 데이터를 업데이트 할 수 있 따!
 
 const [counter, setCounter] = React.useState(0);
