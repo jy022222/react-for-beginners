@@ -88,3 +88,31 @@ return (
 state가 변경되며 컴포넌트가 재생성 (리렌더링) 된다.
 이때, DOM 모두가 바뀌는 게 아니라 우리가 바꾸고 있는 부분, 즉 여기선 {counter} << 이 부분만 변경되는
 아주 스마트한 일이 일어나고잇는 거시다.
+
+
+#3.4:: State Functions <br>
+🩵 state를 바꾸는 두가지 방법
+
+1️⃣ setCounter를 이용하여 원하는 값 넣어주기
+
+const [counter, setCounter] = React.useState(0);
+const onClick = () => {
+    setCounter(987);
+    //setCounter("Hello"); << 이렇게 문자로 넣어줄 수도 있음
+}
+ 
+이런식으로!!
+
+
+2️⃣ 함수로 이전 값을 이용해서 현재 값 계산하기
+
+const [counter, setCounter] = React.useState(0);
+const onClick = () => {
+   setCounter((current) => current + 1);
+   //첫번째 인자는 현재 값,    return값이 새로운 state
+}
+
+이 방법에서 current가 확실히 현재 값이라는 걸 보장하고 있기 때문에
+
+이게 좀 더 직접적이고 분명한 방법이다!
+

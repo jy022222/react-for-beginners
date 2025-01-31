@@ -15,8 +15,10 @@
     function App (){
         const [counter, setCounter] = React.useState(0);
         const onClick = () => {
-            setCounter(counter + 1);
-            //setCounter 함수는 ()안에 값을 받아서 그 값으로 업데이트하고, 리렌더링을 일으킴
+           // setCounter(counter + 1);
+           setCounter((current) => current + 1);
+           //첫번째 인자는 현재 값,    return값이 새로운 state
+           //이 방법이 좀 더 good
         }
 
         return (
