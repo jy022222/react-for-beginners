@@ -109,7 +109,7 @@ const onClick = () => {
 const [counter, setCounter] = React.useState(0);
 const onClick = () => {
    setCounter((current) => current + 1);
-   //첫번째 인자는 현재 값,    return값이 새로운 state
+   //첫번째 인자는 현재 값,     return값이 새로운 state
 }
 
 이 방법에서 current가 확실히 현재 값이라는 걸 보장하고 있기 때문에
