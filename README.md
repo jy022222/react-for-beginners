@@ -116,3 +116,33 @@ const onClick = () => {
 
 이게 좀 더 직접적이고 분명한 방법이다!
 
+
+#3.5:: Input and State <br>
+🩵React로 input minutes에 어떤 숫자를 적었는지 추적해보자
+
+function App (){
+    const [minutes, setMinutes] = React.useState();
+    const onChange = (event) => {
+        setMinutes(event.target.value)
+    }
+    //onChange 함수를 만들어서 사용자가 input에 입력할때를 감지함 + event.target.value로 값까지 알아냄
+
+    return (
+        <div>
+            <h1 id="title">Super Converter</h1> 
+
+            <label htmlFor="minutes">Minutes</label>
+            <input value={minutes} id="minutes" placeholder="Minutes" type="number" onChange={onChange}/>
+            <h4>you wanna convert {minutes}</h4>
+
+            <label htmlFor="hours">Hours</label>
+            <input id="hours" placeholder="Hours"  type="number" />
+        </div>
+    )
+}
+
+minutes를 데이터로 갖는 useState를 만들어준 후, 그 minutes의 값을 컴포넌트에 보여주기 위해
+input에 value={minutes} << 이렇게 세팅해줌!
+
+그리고 onChange 함수를 생성해서 setMinutes에 사용자가 input에 입력한 value를 받도록 세팅해주고
+ipnut에 onChange = {onChange}로 이벤트를 연결해주면 됨!

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <body>
     <div id="root"></div>
 </body>
@@ -10,25 +9,27 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
 <script type="text/babel">
-    const root = document.getElementById('root');
-
     function App (){
-        const [counter, setCounter] = React.useState(0);
-        const onClick = () => {
-           // setCounter(counter + 1);
-           setCounter((current) => current + 1);
-           //첫번째 인자는 현재 값,     return값이 새로운 state
-           //이 방법이 좀 더 good
+        const [minutes, setMinutes] = React.useState();
+        const onChange = (event) => {
+            setMinutes(event.target.value)
         }
-
+         
         return (
             <div>
-                <h3 id="title">Total clicks: {counter}</h3>
-                <button onClick={onClick}>Click me</button>
+                <h1 id="title">Super Converter</h1> 
+
+                <label htmlFor="minutes">Minutes</label>
+                <input value={minutes} id="minutes" placeholder="Minutes" type="number" onChange={onChange}/>
+                <h4>you wanna convert {minutes}</h4>
+
+                <label htmlFor="hours">Hours</label>
+                <input id="hours" placeholder="Hours"  type="number" />
             </div>
         )
     }
     
+    const root = document.getElementById('root');
     ReactDOM.render(<App />, root);
 </script>
 
