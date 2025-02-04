@@ -148,3 +148,44 @@ input에 value={minutes} << 이렇게 세팅해줌!
 
 그리고 onChange 함수를 생성해서 setMinutes에 사용자가 input에 입력한 value를 받도록 세팅해주고
 ipnut에 onChange = {onChange}로 이벤트를 연결해주면 됨!
+
+#3.6:: State Practice One <br>
+
+function App (){
+    const [minutes, setMinutes] = React.useState(0);
+    const onChange = (event) => {
+        setMinutes(event.target.value)
+    }
+
+    return (
+        <div>
+            <h1 id="title">Super Converter</h1> 
+            <div>
+                <label htmlFor="minutes">Minutes</label>
+                <input value={minutes} id="minutes" placeholder="Minutes" type="number" onChange={onChange}/> 
+            </div>
+            <div>
+                <label htmlFor="hours">Hours</label>
+                <input value={Math.round(minutes / 60)} id="hours" placeholder="Hours"  type="number" />
+                            //분을 시로 변환시키기 위해 minutes를 60으로 나누고 반올림까지!
+            </div>
+
+
+
+        </div>
+    )
+}
+
+시간을 나타내주는 Hours 관련된 input과 label도 생성해준 후,
+분을 시로 변환시키기 위해  {minutes}  를 60으로 나누고  Math.round  로 반올림까지 해주었다!
+
+🩵 Reset 버튼 사용해보기
+
+const reset = () => setMinutes(0);
+    //reset함수 추가
+
+<button onClick={reset}>Reset</button>
+    //reset 버튼 추가
+
+setMinutes를 0으로 되돌리는 reset함수를 만들어 준 후,
+button에 onClick으로 이벤트 연결만 해주면 됨!
