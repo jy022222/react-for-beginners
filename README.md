@@ -277,3 +277,69 @@ function App (){
 
 
 #3.8-#3.9:: Final Practice and Recap <br>
+
+function MinutesToHours (){
+        const [amount, setAmount] = React.useState(0);
+        const [flipped, setFlipped] =  React.useState(false);
+        //Flip useState 만들어주기 (true/false)
+
+        const onChange = (event) => {
+            setAmount(event.target.value)
+        };
+        const reset = () => setAmount(0);
+        const onFlip = () => {
+            reset();
+            setFlipped((current) => !current);
+        } 
+        //flipped이 true 상태면 false를 반환, false 상태면 true를 반환할 것임
+         
+        return (
+            <div>
+                <div>
+                    <label htmlFor="minutes">Minutes</label>
+                    <input value={flipped ? amount * 60 : amount} id="minutes" placeholder="Minutes" type="number" onChange={onChange} disabled={flipped} /> 
+                </div>
+                <div>
+                    <label htmlFor="hours">Hours</label>
+                    <input value={ flipped ? amount : Math.round(amount / 60)} id="hours" placeholder="Hours"  type="number" onChange={onChange} disabled={!flipped} />
+                </div>
+                <button onClick={reset}>Reset</button>
+                <button onClick={onFlip}>Flip</button>
+            </div>
+        );
+    }
+    function KmToMiles(){
+        return <h3>KM 2 Miles</h3>
+    }
+    function M2ToPy(){
+        return <h3>m2 2 평수</h3>
+    }
+
+    function App (){
+        const [index, setIndex] = React.useState("xx");
+        const onSelct = (event) => {
+            setIndex(event.target.value)
+        }
+
+        return (
+            <div>
+                <h1 id="title">Super Converter</h1> 
+                <select value={index} onChange={onSelct}>
+                    <option value="xx">Select Your Units</option>
+                    <option value="0">Minutes & Hours</option>    
+                    <option value="1">Km & Miles</option>    
+                    <option value="2">m2 &  평수</option>    
+                </select>
+                {index === "xx" ? "Please Select Your Units" : null}
+                {index === "0" ? <MinutesToHours /> : null}
+                {index === "1" ? <KmToMiles /> : null}
+                {index === "2" ? <M2ToPy /> : null}
+            </div>
+        );
+    }
+    const root = document.getElementById('root');
+    ReactDOM.render(<App />, root);
+
+    <br>
+
+    컴포넌트를 여러개 만들어서 사용자가 다양하게 선택할 수 있게끔 하는 앱을 만들어볼것이다!
