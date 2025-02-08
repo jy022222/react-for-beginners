@@ -179,7 +179,7 @@ function App (){
 시간을 나타내주는 Hours 관련된 input과 label도 생성해준 후,
 분을 시로 변환시키기 위해  {minutes}  를 60으로 나누고  Math.round  로 반올림까지 해주었다!
 
-🩵 Reset 버튼 사용해보기
+🩵 Reset 버튼 사용해보기 <br>
 
 const reset = () => setMinutes(0);
     //reset함수 추가
@@ -192,7 +192,7 @@ button에 onClick으로 이벤트 연결만 해주면 됨!
 
 
 #3.7:: State Practice Two <br>
-🩵 단위 변환 뒤집어보기 (Flip)
+🩵 단위 변환 뒤집어보기 (Flip) <br>
 function App (){
     const [minutes, setMinutes] = React.useState(0);
     const [flipped, setFlipped] =  React.useState(false);
@@ -269,7 +269,11 @@ function App (){
             </div>
         )
     }
+    <br>
 
     삼항연산자를 사용하여 flipped의 상태에 따라 사용자가 입력한 값을 노출할건지, 변환된 값을 노출할건지 설정해줄 수 있습니다.
     이렇게 시를 분으로, 분을 시로 계산해주는 식까지 삼항연산자에 넣어주면
     Pretty cool 하고 sexy한 단위변환기를 구현할 수 있습니다 😀
+
+
+#3.8-#3.9:: Final Practice and Recap <br>
