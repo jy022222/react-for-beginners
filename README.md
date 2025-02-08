@@ -189,3 +189,87 @@ const reset = () => setMinutes(0);
 
 setMinutes를 0으로 되돌리는 reset함수를 만들어 준 후,
 button에 onClick으로 이벤트 연결만 해주면 됨!
+
+
+#3.7:: State Practice Two <br>
+🩵 단위 변환 뒤집어보기 (Flip)
+function App (){
+    const [minutes, setMinutes] = React.useState(0);
+    const [flipped, setFlipped] =  React.useState(false);
+    //Flip useState 만들어주기 (true/false)
+
+
+    const onChange = (event) => {
+        setMinutes(event.target.value)
+    };
+    const reset = () => setMinutes(0);
+    const onFlip = () => setFlipped((current) => !current);
+    //flipped이 true 상태면 false를 반환, false 상태면 true를 반환할 것임
+
+    return (
+        <div>
+            <h1 id="title">Super Converter</h1> 
+            <div>
+                <label htmlFor="minutes">Minutes</label>
+                <input value={minutes} id="minutes" placeholder="Minutes" type="number" onChange={onChange} disabled={flipped === true} /> 
+            	//flipped가 true면 disalbed 상태로
+            </div>
+            <div>
+                <label htmlFor="hours">Hours</label>
+                <input value={Math.round(minutes / 60)} id="hours" placeholder="Hours"  type="number" disabled={flipped === false} />
+            	//flipped가 false면 disalbed 상태로
+            </div>
+            <button onClick={reset}>Reset</button>
+            <button onClick={onFlip}>Flip</button>
+        </div>
+    )
+}
+
+새로 생성해준 true 혹은 false 변수인 flipped !!
+사용자가 Flip 버튼을 클릭하면 onFlip 함수가 실행되어 해당 함수는 현재 값 (current)를 받아서 그 반대의 값을 내놓을 것입니다.
+그 값으로 input을 disabled 할건지, enabled할 건지 결정할 수 있게 됩니다. 
+
+<input value={minutes} id="minutes" placeholder="Minutes" type="number" onChange={onChange} disabled={flipped} />
+<input value={Math.round(minutes / 60)} id="hours" placeholder="Hours"  type="number" disabled={!flipped} />
+
+!를 사용하면 더욱 간결하게 나타낼 수도 있습니다.
+
+ //기존 minutes 변수를 'amount'로 바꿨음
+ 
+ function App (){
+        const [amount, setAmount] = React.useState(0);
+        const [flipped, setFlipped] =  React.useState(false);
+        //Flip useState 만들어주기 (true/false)
+
+        const onChange = (event) => {
+            setAmount(event.target.value)
+        };
+        const reset = () => setAmount(0);
+        const onFlip = () => {
+            reset();
+            setFlipped((current) => !current);
+        } 
+        //flipped이 true 상태면 false를 반환, false 상태면 true를 반환할 것임
+         
+        return (
+            <div>
+                <h1 id="title">Super Converter</h1> 
+                <div>
+                    <label htmlFor="minutes">Minutes</label>
+                    <input value={flipped ? amount * 60 : amount} id="minutes" placeholder="Minutes" type="number" onChange={onChange} disabled={flipped} /> 
+                	//삼항연산자 >> flipped 상태면 state 원래 값 보여주기 아니면 변환된 값 보여주기 (시를 분으로)
+                </div>
+                <div>
+                    <label htmlFor="hours">Hours</label>
+                    <input value={ flipped ? amount : Math.round(amount / 60)} id="hours" placeholder="Hours"  type="number" onChange={onChange} disabled={!flipped} />
+                	//삼항연산자 >> flipped 상태면 state 원래 값 보여주기 아니면 변환된 값 보여주기 (분을 시로)
+                </div>
+                <button onClick={reset}>Reset</button>
+                <button onClick={onFlip}>Flip</button>
+            </div>
+        )
+    }
+
+    삼항연산자를 사용하여 flipped의 상태에 따라 사용자가 입력한 값을 노출할건지, 변환된 값을 노출할건지 설정해줄 수 있습니다.
+    이렇게 시를 분으로, 분을 시로 계산해주는 식까지 삼항연산자에 넣어주면
+    Pretty cool 하고 sexy한 단위변환기를 구현할 수 있습니다 😀
