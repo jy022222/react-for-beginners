@@ -8,62 +8,25 @@
 <!-- Babel -->
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
-    function MinutesToHours (){
-        const [amount, setAmount] = React.useState(0);
-        const [flipped, setFlipped] =  React.useState(false);
-        //Flip useState 만들어주기 (true/false)
-
-        const onChange = (event) => {
-            setAmount(event.target.value)
-        };
-        const reset = () => setAmount(0);
-        const onFlip = () => {
-            reset();
-            setFlipped((current) => !current);
-        } 
-        //flipped이 true 상태면 false를 반환, false 상태면 true를 반환할 것임
-         
-        return (
-            <div>
-                <div>
-                    <label htmlFor="minutes">Minutes</label>
-                    <input value={flipped ? amount * 60 : amount} id="minutes" placeholder="Minutes" type="number" onChange={onChange} disabled={flipped} /> 
-                </div>
-                <div>
-                    <label htmlFor="hours">Hours</label>
-                    <input value={ flipped ? amount : Math.round(amount / 60)} id="hours" placeholder="Hours"  type="number" onChange={onChange} disabled={!flipped} />
-                </div>
-                <button onClick={reset}>Reset</button>
-                <button onClick={onFlip}>Flip</button>
-            </div>
-        );
-    }
-    function KmToMiles(){
-        return <h3>KM 2 Miles</h3>
-    }
-    function M2ToPy(){
-        return <h3>m2 2 평수</h3>
+    function Btn({banana, big}) {
+        //props는 오브젝트이기 때문에  {}안에 써줄 수 있음
+        return <button  style={{
+            backgroundColor: "tomato",
+            color:"white",
+            padding: "10px 20px",
+            borderRadius:10,
+            border: 0,
+            fontSize: big ? 18 : 16
+        }}>
+            {banana}
+        </button>
     }
 
     function App (){
-        const [index, setIndex] = React.useState("xx");
-        const onSelct = (event) => {
-            setIndex(event.target.value)
-        }
-
         return (
             <div>
-                <h1 id="title">Super Converter</h1> 
-                <select value={index} onChange={onSelct}>
-                    <option value="xx">Select Your Units</option>
-                    <option value="0">Minutes & Hours</option>    
-                    <option value="1">Km & Miles</option>    
-                    <option value="2">m2 &  평수</option>    
-                </select>
-                {index === "xx" ? "Please Select Your Units" : null}
-                {index === "0" ? <MinutesToHours /> : null}
-                {index === "1" ? <KmToMiles /> : null}
-                {index === "2" ? <M2ToPy /> : null}
+              <Btn banana="Save Changes" big={true} />
+              <Btn banana="Continue" big={false} />
             </div>
         );
     }

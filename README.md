@@ -343,3 +343,73 @@ function MinutesToHours (){
     <br>
 
     컴포넌트를 여러개 만들어서 사용자가 다양하게 선택할 수 있게끔 하는 앱을 만들어볼것이다!
+
+#4.0:: Props <br>
+💡 Props : 부모 컨포넌트로부터 자식 컴포넌트에 데이터를 보낼 수 있게 해주는 방법 <br>
+예를 들어 2개의 button이 있다고 가정했을 때, 이 button들에게 style을 입혀준다고 해봅시다. <br>
+
+<script>
+function SaveBtn() {
+    return <button style={{
+        backgroundColor: "tomato",
+        color:"white",
+        padding: "10px 20px",
+        borderRadius:10,
+        border: 0
+    }}>Save Changes</button>
+}
+function ConfirmBtn() {
+    return <button style={{
+        backgroundColor: "tomato",
+        color:"white",
+        padding: "10px 20px",
+        borderRadius:10,
+        border: 0
+    }}>Confirm</button>
+}
+
+function App (){
+    return (
+        <div>
+          <SaveBtn />
+          <ConfirmBtn />
+        </div>
+    );
+}
+const root = document.getElementById('root');
+ReactDOM.render(<App />, root);
+</script>
+
+저렇게 각각의 버튼 컴포넌트를 만든 후, style을 object 형식으로 인라인에 입혀줄 수 있습니다.
+하지만 중복되는 코드를 복붙해서 써야하는 안좋은 이슈가 발생합니다.
+이때, 이 모종의 style 설정들을 넘겨줄 수 있는 button 컴포넌트가 있다면 편하겠쬬??
+
+<script>
+function Btn({banana, big}) {
+    //props는 오브젝트이기 때문에  {}안에 써줄 수 있음
+    return <button  style={{
+        backgroundColor: "tomato",
+        color:"white",
+        padding: "10px 20px",
+        borderRadius:10,
+        border: 0,
+        fontSize: big ? 18 : 16
+    }}>
+        {banana}
+    </button>
+}
+
+function App (){
+    return (
+        <div>
+          <Btn banana="Save Changes" big={true} />
+          <Btn banana="Continue" big={false} />
+        </div>
+    );
+}
+const root = document.getElementById('root');
+ReactDOM.render(<App />, root);
+</script>
+
+내가 만들고 사용하는 모든 컴포넌트들은 ()괄호로 인자를 받을 수 있습니다.
+그것이 바로 props이고, Btn으로부터 전달받는 properties(속성들) 인 것입니다.
