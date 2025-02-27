@@ -416,7 +416,7 @@ ReactDOM.render(<App />, root);
 
 #4.1:: Memo <br>
 🩵 Prop으로 다른것도 넣어보자! (예를들어 function.. )
-
+```javascript
     function Btn({text, ChangeValue}) {
         //props는 오브젝트이기 때문에  {}안에 써줄 수 있음
         return <button  
@@ -447,11 +447,11 @@ ReactDOM.render(<App />, root);
     }
     const root = document.getElementById('root');
     ReactDOM.render(<App />, root);
-
+```
 prop으로 ChangeValue를 넣어줬고, Btn이라는 컴포넌트 안에 onClick이벤트로 넣어주었습니다.
 뭐든 App 안에 prop으로서 넣는다고 하면, 절대 저절로 컴포넌트의 return 안으로 들어가지 않고,
 반드시 컴포넌트의 인자로 써주어야 합니다.
-
+```javascript
 💡 Memo(React.memo()) : 불필요한 리렌더링을 방지하기 위해 '메모라이징'하는 것!
 
     const MemorizedBtn = React.memo(Btn);
@@ -470,7 +470,7 @@ prop으로 ChangeValue를 넣어줬고, Btn이라는 컴포넌트 안에 onClick
             </div>
         );
     }
-
+```
 만약 부모 컴포넌트 (여기선 App이 되겠지?)가 어떤 state의 변경이라도 발생했다 !
 >> 그럼 모든 자식들이 다 리렌더링 될 것이다. 이것은 추후 앱 성능에 영향을 줄 수도 있습니다.
 그것을 방지하기 위해 리렌더링이 필요한 아이에게만 해당 렌더링이 일어날 수 있도록 리액트에게 말해주는 것입니다.
