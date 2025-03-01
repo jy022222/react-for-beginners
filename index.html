@@ -3,21 +3,22 @@
 <body>
     <div id="root"></div>
 </body>
-<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
 <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
 <!-- Babel -->
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
-    function Btn({text, ChangeValue}) {
+    function Btn({text, fontSize}) {
         //props는 오브젝트이기 때문에  {}안에 써줄 수 있음
         return <button  
-        onClick={ChangeValue}
         style={{
             backgroundColor: "tomato",
             color:"white",
             padding: "10px 20px",
             borderRadius:10,
             border: 0,
+            fontSize,
         }}>
             {text}
         </button>
@@ -26,16 +27,17 @@
     const MemorizedBtn = React.memo(Btn);
     //MemorizedBtn은 이제 메모라이징 된 버전의 Btn이 되는 것이다!
 
+    Btn.propTypes = {
+        text: PropTypes.string.isRequired,
+        fontSize: PropTypes.number.isRequired,
+    }
+
     function App (){
         const [value, setValue] = React.useState("Save Changes");
-        const changeValue =() => setValue("Revert Changes");
 
-        //onClick 이벤트를 내 커스텀 컴포넌트에다가 넣는다면, 이건 그냥 하나의 prop일 뿐.
-        //실직적인 이벤트리스너가 아님
         return ( 
             <div> 
-              <MemorizedBtn text={value} ChangeValue={changeValue} />
-              <MemorizedBtn text="Continue" />
+              <Btn text="Save Changes" fontSize={18} />
             </div>
         );
     }

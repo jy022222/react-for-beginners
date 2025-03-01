@@ -474,3 +474,53 @@ prop으로 ChangeValue를 넣어줬고, Btn이라는 컴포넌트 안에 onClick
 만약 부모 컴포넌트 (여기선 App이 되겠지?)가 어떤 state의 변경이라도 발생했다 !
 >> 그럼 모든 자식들이 다 리렌더링 될 것이다. 이것은 추후 앱 성능에 영향을 줄 수도 있습니다.
 그것을 방지하기 위해 리렌더링이 필요한 아이에게만 해당 렌더링이 일어날 수 있도록 리액트에게 말해주는 것입니다.
+
+#4.2:: Prop Types <br>
+💡Prop Types : 어떤 타입의 prop을 받고 있는지를 체크해주는 것 
+
+```javascript
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+//해당 스크립트 코드 추가
+
+function Btn({text, fontSize}) =
+    return <button  
+    style={{
+        backgroundColor: "tomato",
+        color:"white",
+        padding: "10px 20px",
+        borderRadius:10,
+        border: 0,
+        fontSize,
+    }}>
+        {text}
+    </button>
+}
+
+Btn.propTypes = {
+    text: PropTypes.string,
+    fontSize: PropTypes.number
+}
+```
+이렇게 각각의 prop들이 어떤 타입이어야 하는지를 각각 정의해 주었습니다.
+text는 string(문자열), fontSize는 number(숫자)로요!
+
+이 때, 만약 정의해준 타입에 어긋나게 prop을 설정해준다면
+
+```javascript
+return ( 
+    <div> 
+      <Btn text="Save Changes" fontSize={'hihi'} />
+    </div>
+);
+```
+브라우저는 부적절한 prop이 들어왔다며 오류를 알려줄 것입니다.
+
+```javascript
+Btn.propTypes = {
+    text: PropTypes.string.isRequired,
+    fontSize: PropTypes.number.isRequired,
+}
+```
+
+또한 이렇게 뒤에 isRequired를 찍어 줄 경우, 해당 값을 필수로 설정하게끔 할 수 있는데요 (마치 유효성 검사처럼)
+저렇게 필수로 설정해주었는데, prop으로 넣어주지 않았을 경우에도 값이 정의되어있지 않다면서 친절하게 오류를 알려줄 것입니다.
